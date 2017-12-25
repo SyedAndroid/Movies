@@ -9,7 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Toolbar;
 
+import challenge.cabonline.com.movie.MovieApplication;
 import challenge.cabonline.com.movie.R;
+
 
 
 public class MainActivity extends LifecycleActivity {
@@ -18,15 +20,12 @@ public class MainActivity extends LifecycleActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (savedInstanceState == null) {
-            MovieListFragment fragment = new MovieListFragment();
-
-
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setActionBar(toolbar);
 
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -39,7 +38,7 @@ public class MainActivity extends LifecycleActivity {
 
             tabLayout.setupWithViewPager(viewPager);
             tabLayout.setTabMode(TabLayout.MODE_FIXED);
-        }
+
     }
 
 }

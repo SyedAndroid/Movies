@@ -7,6 +7,7 @@ public abstract class Dao<T extends RealmModel> {
 
     protected Realm db;
 
+
     public Dao(Realm db) {
         this.db = db;
     }

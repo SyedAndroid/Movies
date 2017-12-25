@@ -17,14 +17,17 @@ import io.realm.Realm;
 
 public class MovieIdViewModel extends ViewModel {
 
-    private Realm database;
+    private Realm getDatabase;
     private MovieDao dao;
-
     private LiveData<Movie> movie;
 
+
+
+
     public MovieIdViewModel(String movieId) {
-        database = Realm.getDefaultInstance();
-        dao = new MovieDao(database);
+
+        getDatabase = Realm.getDefaultInstance();
+        dao = new MovieDao(getDatabase);
 
         movie = Transformations.map(dao.findByIdAsync(Integer.valueOf(movieId)),
                 new Function<MovieEntity, Movie>() {
@@ -47,16 +50,17 @@ public class MovieIdViewModel extends ViewModel {
 
     @Override
     protected void onCleared() {
-        database.close();
+        getDatabase.close();
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
-        private final String movieId;
-
         public Factory(String movieId) {
             this.movieId = movieId;
         }
+
+        String movieId;
+
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {

@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 
 import challenge.cabonline.com.movie.database.entity.MovieEntity;
 import challenge.cabonline.com.movie.database.livedata.RealmLiveData;
@@ -18,6 +19,7 @@ import io.realm.RealmQuery;
 
 public class MovieDao extends Dao<MovieEntity> {
 
+    @Inject
     public MovieDao(Realm db) {
         super(db);
     }

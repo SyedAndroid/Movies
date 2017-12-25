@@ -1,5 +1,6 @@
 package challenge.cabonline.com.movie.ui;
 
+import android.app.Activity;
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -62,6 +63,7 @@ public class MovieDetailFragment extends LifecycleFragment {
     ReviewAdapter reviewAdapter;
     TrailerAdapter trailerAdapter;
     int movieId;
+    Activity activity;
 
     public MovieDetailFragment() {
     }
@@ -75,6 +77,7 @@ public class MovieDetailFragment extends LifecycleFragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
+        activity = getActivity();
     }
 
     @Override
@@ -90,6 +93,8 @@ public class MovieDetailFragment extends LifecycleFragment {
         MovieIdViewModel viewModel = ViewModelProviders.of(this, factory)
                 .get(MovieIdViewModel.class);
 
+
+
         viewModel.getMovie().observe(this, new Observer<Movie>() {
             @Override
             public void onChanged(@Nullable Movie movie) {
@@ -97,6 +102,7 @@ public class MovieDetailFragment extends LifecycleFragment {
                 titleView.setText(movie.getTitle());
 
                 Picasso.with(getContext()).load(Constants.IMAGE_URL + "/w342" + movie.getPoster() + "?api_key?=" + BuildConfig.API_KEY).fit().into(imageView);
+
 
                 rating.setText(Double.toString(movie.getVoteAverage()).concat("/10"));
                 ratingBar.setMax(5);
@@ -107,7 +113,6 @@ public class MovieDetailFragment extends LifecycleFragment {
                 movieId = movie.getId();
             }
         });
-
 
       /*  ReviewViewModel.Factory factory1 = new ReviewViewModel.Factory(
                 getActivity().getApplication(),String.valueOf(movieId));*/

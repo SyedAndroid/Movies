@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import challenge.cabonline.com.movie.R;
 import challenge.cabonline.com.movie.model.TrailerModel;
@@ -19,7 +21,8 @@ public class TrailerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     Context context;
     private List<TrailerModel> data;
-
+    @Inject
+    Picasso picasso;
 
     public TrailerAdapter(Context context, List<TrailerModel> data) {
         this.context = context;
@@ -42,7 +45,7 @@ public class TrailerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
         String thumbnailURL = URLUtils.makeThumbnailURL(data.get(position).getKey());
-        Glide.with(context).load(thumbnailURL).into(((MyItemHolder) holder).imageView);
+        picasso.with(context).load(thumbnailURL).into(((MyItemHolder) holder).imageView);
 
     }
 

@@ -21,23 +21,6 @@ public class ReviewViewModel extends AndroidViewModel {
     public LiveData<Review> getReviewListObservable() {
         return reviewListObservable;
     }
-    /*public static class Factory extends ViewModelProvider.NewInstanceFactory {
-
-        @NonNull
-        private final Application application;
-
-        private final String movieId;
-
-        public Factory(@NonNull Application application, String movieId) {
-            this.application = application;
-            this.movieId = movieId;
-        }
-
-        @Override
-        public <T extends ViewModel> T create(Class<T> modelClass) {
-            return (T) new ReviewViewModel(application, movieId);
-        }
-    }*/
 
 
 }

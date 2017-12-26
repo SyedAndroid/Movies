@@ -55,7 +55,7 @@ public class MovieListFragment extends LifecycleFragment implements MovieAdapter
         View root = LayoutInflater.from(getContext())
                 .inflate(R.layout.movie_list_fragment, container, false);
 
-        movieAdapter = new MovieAdapter(getActivity(),this);
+        movieAdapter = new MovieAdapter(getActivity(), this);
         RecyclerView recyclerView = root.findViewById(R.id.movies_list_recycler_view);
         recyclerView.setAdapter(movieAdapter);
 
@@ -82,16 +82,16 @@ public class MovieListFragment extends LifecycleFragment implements MovieAdapter
     }
 
     @Override
-    public void movieClickLister(Movie movie ,View view) {
+    public void movieClickLister(Movie movie, View view) {
         Intent intent = new Intent(getContext(), DetailActivity.class);
-        intent.putExtra("movieId", movie.getId() );
-        intent.putExtra("backdrop",movie.getBackground());
+        intent.putExtra("movieId", movie.getId());
+        intent.putExtra("backdrop", movie.getBackground());
                 /*ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation(activity, holder.poster, "picture");*/
-        int finalRadius = (int)Math.hypot(view.getWidth()/2, view.getHeight()/2);
-        Animator anim = ViewAnimationUtils.createCircularReveal(view, (int) view.getWidth()/2, (int) view.getHeight()/2, 0, finalRadius);
+        int finalRadius = (int) Math.hypot(view.getWidth() / 2, view.getHeight() / 2);
+        Animator anim = ViewAnimationUtils.createCircularReveal(view, (int) view.getWidth() / 2, (int) view.getHeight() / 2, 0, finalRadius);
         anim.start();
         startActivity(intent);
-        getActivity().overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up  );
+        getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
     }
 }

@@ -24,7 +24,8 @@ public class DetailActivity extends LifecycleActivity {
     @BindView(R.id.toolImage)
     ImageView toolImage;
 
-    private IdViewModel idViewModel ;
+    private IdViewModel idViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class DetailActivity extends LifecycleActivity {
         ButterKnife.bind(this);
 
         int movieId = getIntent().getIntExtra("movieId", 0);
-        idViewModel =   ViewModelProviders.of(this).get(IdViewModel.class);
+        idViewModel = ViewModelProviders.of(this).get(IdViewModel.class);
         idViewModel.setMovieId(movieId);
 
 

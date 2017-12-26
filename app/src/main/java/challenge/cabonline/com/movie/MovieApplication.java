@@ -28,6 +28,6 @@ public class MovieApplication extends Application {
                         .build());
         initializeData.execute();
 
-   }
+    }
 
 }

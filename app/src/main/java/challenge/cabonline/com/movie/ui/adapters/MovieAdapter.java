@@ -23,13 +23,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     // private ItemClickListener<? extends Recipe> clickListener;
 
     Activity activity;
-
+    Movie movie;
     private List<? extends Movie> movies;
-
     private MovieClickListener mMovieClickLister;
-     Movie movie;
 
-    public MovieAdapter( Activity activity,MovieClickListener mMovieClickLister) {
+    public MovieAdapter(Activity activity, MovieClickListener mMovieClickLister) {
         this.activity = activity;
         this.mMovieClickLister = mMovieClickLister;
     }
@@ -47,15 +45,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return new MovieViewHolder(view);
     }
 
-    public interface MovieClickListener {
-
-        void movieClickLister(Movie movie, View view);
-
-    }
     @Override
     public void onBindViewHolder(final MovieViewHolder holder, int position) {
 
-         movie = movies.get(position);
+        movie = movies.get(position);
 
         String poster = "https://image.tmdb.org/t/p/w342" + movie.getPoster();
         Picasso.with(activity.getApplicationContext()).load(poster).into(holder.poster);
@@ -70,7 +63,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return movies == null ? 0 : movies.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder   implements View.OnClickListener {
+    public interface MovieClickListener {
+
+        void movieClickLister(Movie movie, View view);
+
+    }
+
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.poster)
         ImageView poster;
@@ -84,11 +83,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
+
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
 
-            mMovieClickLister.movieClickLister(movies.get(position),view);
+            mMovieClickLister.movieClickLister(movies.get(position), view);
 
         }
 

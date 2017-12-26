@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 
 import challenge.cabonline.com.movie.BuildConfig;
 import challenge.cabonline.com.movie.model.Review;
+import challenge.cabonline.com.movie.model.SearchResult;
 import challenge.cabonline.com.movie.model.Trailer;
 import challenge.cabonline.com.movie.ui.utils.Constants;
 import retrofit2.Call;
@@ -45,7 +46,7 @@ public class RetrofitMovieService {
         movieService.loadReviews(movieId, BuildConfig.API_KEY).enqueue(new Callback<Review>() {
             @Override
             public void onResponse(Call<Review> call, Response<Review> response) {
-                simulateDelay();
+
                 data.setValue(response.body());
             }
 
@@ -63,7 +64,7 @@ public class RetrofitMovieService {
         movieService.loadTrailers(movieId, BuildConfig.API_KEY).enqueue(new Callback<Trailer>() {
             @Override
             public void onResponse(Call<Trailer> call, Response<Trailer> response) {
-                simulateDelay();
+
                 data.setValue(response.body());
             }
 
@@ -75,12 +76,27 @@ public class RetrofitMovieService {
         return data;
     }
 
-    private void simulateDelay() {
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public LiveData<SearchResult> getSearchResults(String search) {
+        final MutableLiveData<SearchResult> data = new MutableLiveData<>();
+
+        movieService.loadSearch(search, BuildConfig.API_KEY).enqueue(new Callback<SearchResult>() {
+            @Override
+            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
+
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<SearchResult> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+
+    public MovieService getMovieService() {
+        return movieService;
     }
 }
 

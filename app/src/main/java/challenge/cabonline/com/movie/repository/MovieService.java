@@ -1,6 +1,7 @@
 package challenge.cabonline.com.movie.repository;
 
 import challenge.cabonline.com.movie.model.Review;
+import challenge.cabonline.com.movie.model.SearchResult;
 import challenge.cabonline.com.movie.model.Trailer;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -19,6 +20,8 @@ public interface MovieService {
     @GET("/3/movie/{id}/reviews")
     Call<Review> loadReviews(@Path("id") String id, @Query("api_key") String api_key);
 
+    @GET("/3/search/movie")
+    Call<SearchResult> loadSearch(@Query("query") String query, @Query("api_key") String api_key);
 
 }
 

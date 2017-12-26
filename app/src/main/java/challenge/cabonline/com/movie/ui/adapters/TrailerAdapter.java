@@ -20,9 +20,9 @@ import challenge.cabonline.com.movie.ui.utils.URLUtils;
 public class TrailerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
-    private List<TrailerModel> data;
     @Inject
     Picasso picasso;
+    private List<TrailerModel> data;
 
     public TrailerAdapter(Context context, List<TrailerModel> data) {
         this.context = context;

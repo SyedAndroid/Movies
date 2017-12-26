@@ -94,7 +94,6 @@ public class MovieDetailFragment extends LifecycleFragment {
                 .get(MovieIdViewModel.class);
 
 
-
         viewModel.getMovie().observe(this, new Observer<Movie>() {
             @Override
             public void onChanged(@Nullable Movie movie) {

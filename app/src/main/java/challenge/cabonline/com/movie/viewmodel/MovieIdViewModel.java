@@ -22,8 +22,6 @@ public class MovieIdViewModel extends ViewModel {
     private LiveData<Movie> movie;
 
 
-
-
     public MovieIdViewModel(String movieId) {
 
         getDatabase = Realm.getDefaultInstance();
@@ -55,12 +53,11 @@ public class MovieIdViewModel extends ViewModel {
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
+        String movieId;
+
         public Factory(String movieId) {
             this.movieId = movieId;
         }
-
-        String movieId;
-
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {

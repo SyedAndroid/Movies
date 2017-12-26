@@ -44,9 +44,13 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'android.arch.paging:runtime:1.0.0-alpha1'
 
 }
 
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
 dependencies {
     compile 'com.google.dagger:dagger-android:2.13'
     compile 'com.google.dagger:dagger-android-support:2.13' // if you use the support libraries
